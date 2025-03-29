@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cat Facts</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+
+        .fact-box {
+            border: 2px solid #4CAF50;
+            padding: 20px;
+            margin: 20px auto;
+            width: 300px;
+            transition: opacity 0.5s ease;
+            opacity: 0;
+        }
+
+        .visible {
+            opacity: 1;
+        }
+
+        button {
+            margin: 10px;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="fact-box" id="factBox">
+        <p id="factDisplay">Click the button to get a cat fact!</p>
+    </div>
+    <button id="factButton">Get Random Cat Fact</button>
+    <button id="shareButton">Share on Twitter</button>
+    
+    <script>
+        const facts = [
+            "Cats have five toes on their front paws, but only four toes on their back paws.",
+            "A group of cats is called a clowder.",
+            "Cats can make over 100 different sounds, while dogs can only make about 10.",
+            "The world's oldest cat lived to be 38 years old.",
+            "Cats sleep for about 13 to 16 hours a day, which is around two-thirds of their life.",
+            "A cat's nose print is unique, much like a human's fingerprint.",
+            "Cats can rotate their ears 180 degrees.",
+            "The average cat can run up to 30 miles per hour.",
+            "Cats have a special collarbone that allows them to always land on their feet.",
+            "The meow is primarily a form of communication between cats and humans, not among cats themselves."
+        ];
+
+        document.getElementById('factButton').addEventListener('click', displayRandomFact);
+        document.getElementById('shareButton').addEventListener('click', shareOnTwitter);
+
+        function displayRandomFact() {
+            const randomIndex = Math.floor(Math.random() * facts.length);
+            const fact = facts[randomIndex];
+            const factDisplay = document.getElementById('factDisplay');
+            factDisplay.textContent = fact;
+            factDisplay.parentElement.classList.add('visible');
+        }
+
+        function shareOnTwitter() {
+            const fact = document.getElementById('factDisplay').textContent;
+            const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(fact)}`;
+            window.open(twitterUrl, '_blank');
+        }
+    </script>
+</body>
+</html>
